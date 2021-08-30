@@ -25,10 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       return token;
     };
 
-
   
     static associate(models) {
-      // define association here
+      User.hasMany(models.Music, { onDelete: 'cascade' });
     }
   };
   User.init({

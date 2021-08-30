@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+var queryBuilder = require('eloquent-query-builder');
 const options = {
     host: '127.0.0.1',
     logging: false,
@@ -6,6 +7,10 @@ const options = {
 }
 
 const sequelize = new Sequelize("mylovemusic","root","",options)
+const DBO = new queryBuilder(sequelize);
+
+
+
 
 
 async function main() {
@@ -20,4 +25,4 @@ try {
 }
 
 
-module.exports = {main}
+module.exports = {main,DBO}

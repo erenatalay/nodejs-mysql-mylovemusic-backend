@@ -3,6 +3,7 @@ const asyncErrorWrapper = require("express-async-handler")
 const {sendJwtClient} = require("../helpers/authorization/tokenHelpers")
 const {validateUserInput,comparePassword} = require("../helpers/input/inputHelpers")
 const CustomError = require("../helpers/error/CustomError")
+const { DBO } = require("../database/connection");
 
 const getUser = asyncErrorWrapper(async ( req,res,next) => {
 
@@ -59,7 +60,7 @@ const logout = asyncErrorWrapper(async(req,res,next) => {
     const { NODE_ENV } = process.env;
 
     return res.status(200).cookie({
-        httpOnly: true,
+        httpOnly: true, 
         expires: new Date(Date.now()),
         secure: NODE_ENV === "development" ? false : true
     }).json({
